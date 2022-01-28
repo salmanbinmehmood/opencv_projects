@@ -1,0 +1,89 @@
+# import cv2
+# cap=cv2.VideoCapture(r'F:\python\pirates.mp4')
+# print('cap',cap)
+# while True:
+#     ret,frame=cap.read()
+#     frame=cv2.resize(frame,(700,600))
+#     cv2.imshow('rame',frame)
+#     gray=cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
+#     cv2.imshow('gray', gray)
+#     k=cv2.waitKey(10)
+#
+#     if k==ord('q'):
+#         break
+#
+# cap.release()
+# cv2.destroyAllWindows()
+
+#
+# from twilio.rest import Client
+#
+# account_sid = 'AC7dc20f6a917293f1b4467920b5a3ad09'
+# auth_token = '766045a2d5020935850ac3528cbd2f97'
+# client = Client(account_sid, auth_token)
+#
+# message = client.messages.create(
+#     from_='+19852574949',
+#     body=' twilio testing ',
+#     to='+923468252210'
+# )
+#
+# print(message.sid)
+
+
+
+# import cv2 as c
+# import numpy as np
+# import pyautogui as p
+# sc_size=p.size()
+#
+# # fn=input("Enter the file name")
+# fps=20.0
+# fourcc=c.VideoWriter_fourcc(*"XVID")
+# output=c.VideoWriter('src.avi',fourcc,fps,sc_size)
+# c.namedWindow('Live Recording',c.WINDOW_NORMAL)
+# c.resizeWindow('Live Recording',(600,500))
+#
+# while True:
+#     # ret,frame=cap.read()
+#     # frame=c.resize(frame,(700,600))
+#     img=p.screenshot()
+#     f=np.array(img)
+#     f=c.cvtColor(f,c.COLOR_BGR2RGB)
+#     c.imshow('Live Recording',f)
+#     output.write(f)
+#
+#     # c.imshow('gray', gray)
+#     # k=c.waitKey(10)
+#
+#     if c.waitKey(1)==ord('q'):
+#         break
+#
+# output.release()
+# c.destroyAllWindows()
+
+# capture images from video
+
+import cv2
+cap=cv2.VideoCapture('F:\python\pythonProject\pythonProject\computter_vision\subway.mp4')
+ret,frame=cap.read()
+count=0
+print('cap',cap)
+while True:
+    if ret==True:
+        cv2.imwrite(r'F:\python\pythonProject\pythonProject\computter_vision\frames\frame%d.jpg'%count,frame)
+        cap.set(cv2.CAP_PROP_POS_MSEC,(count**100))
+        ret, frame = cap.read()
+    # frame=cv2.resize(frame,(700,600))
+        cv2.imshow('rame',frame)
+
+
+        count+=1
+
+
+        if cv2.waitKey(1) & 0XFF ==ord('q'):
+            break
+            cv2.destroyAllWindows()
+
+cap.release()
+cv2.destroyAllWindows()
